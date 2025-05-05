@@ -1,0 +1,122 @@
+using System.Management.Automation;
+
+namespace SignValidateTool
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new FolderBrowserDialog())
+            {
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    txtDllFolder.Text = dialog.SelectedPath;
+                }
+            }
+        }
+
+        private void btnSelectSignTool_Click(object sender, EventArgs e)
+        {
+            using (var dialog = new OpenFileDialog())
+            {
+                dialog.Filter = "All files (*.*)|*.*";
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    txtSignToolPath.Text = dialog.FileName;
+                }
+            }
+        }
+
+        private void btnRunPowerShell_Click(object sender, EventArgs e)
+        {
+            // 更新UI狀態
+            txtOutput.Text = "";
+            btnRunPowerShell.Enabled = false;
+            progressBar.Visible = true;
+            statusLabel.Text = "正在執行驗證...";
+            
+            string dllFolder = txtDllFolder.Text;
+            string signToolPath = txtSignToolPath.Text;
+
+            if (!Directory.Exists(dllFolder) || !File.Exists(signToolPath))
+            {
+                MessageBox.Show("請確認路徑正確！", "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ResetUI();
+                return;
+            }
+            string signToolFolder = Path.GetDirectoryName(signToolPath);
+
+            // 使用背景執行緒執行
+            Task.Run(() => {
+                // PowerShell指令
+                string psScript = @"
+                    $files = Get-ChildItem -Path '" + dllFolder + @"\*.dll'
+                    $totalCount = $files.Count
+                    $currentCount = 0
+                    
+                    foreach($file in $files)
+                    {
+                        $currentCount++
+                        Write-Output(`"處理中 ($currentCount/$totalCount): `" + $file.Name)
+                        cd '" + signToolFolder + @"'
+                        $path = $file.FullName
+
+                        $result = .\SignDotNet.exe -verify `""$path`""
+                        Write-Output(`"結果: $result`")
+                        Write-Output(`"------------------------------`")
+                    }";
+                // 執行PowerShell指令
+                using (PowerShell ps = PowerShell.Create())
+                {
+                    ps.AddScript(psScript);
+                    try
+                    {
+                        var results = ps.Invoke();
+                        foreach (var result in results)
+                        {
+                            AppendText(result.ToString());
+                        }
+                        
+                        // 更新UI狀態
+                        this.Invoke(new Action(() => {
+                            statusLabel.Text = "驗證完成";
+                            progressBar.Visible = false;
+                            btnRunPowerShell.Enabled = true;
+                        }));
+                    }
+                    catch (Exception ex)
+                    {
+                        this.Invoke(new Action(() => {
+                            MessageBox.Show("執行失敗：" + ex.Message, "錯誤", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ResetUI();
+                        }));
+                    }
+                }
+            });
+        }
+
+        private void ResetUI()
+        {
+            statusLabel.Text = "就緒";
+            progressBar.Visible = false;
+            btnRunPowerShell.Enabled = true;
+        }
+
+        private void AppendText(string text)
+        {
+            if (txtOutput.InvokeRequired)
+            {
+                txtOutput.Invoke(new Action(() => AppendText(text)));
+            }
+            else
+            {
+                txtOutput.AppendText(text + Environment.NewLine);
+            }
+        }
+    }
+}
