@@ -54,9 +54,10 @@ namespace SignValidateTool
             btnSelectDllFolder.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
             btnSelectDllFolder.FlatStyle = FlatStyle.Flat;
             btnSelectDllFolder.Font = new Font("Microsoft JhengHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSelectDllFolder.Location = new Point(490, 100);
+            btnSelectDllFolder.Location = new Point(630, 127);
+            btnSelectDllFolder.Margin = new Padding(4);
             btnSelectDllFolder.Name = "btnSelectDllFolder";
-            btnSelectDllFolder.Size = new Size(80, 28);
+            btnSelectDllFolder.Size = new Size(103, 35);
             btnSelectDllFolder.TabIndex = 0;
             btnSelectDllFolder.Text = "瀏覽...";
             btnSelectDllFolder.UseVisualStyleBackColor = false;
@@ -69,9 +70,10 @@ namespace SignValidateTool
             btnSelectSignTool.FlatAppearance.BorderColor = Color.FromArgb(224, 224, 224);
             btnSelectSignTool.FlatStyle = FlatStyle.Flat;
             btnSelectSignTool.Font = new Font("Microsoft JhengHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSelectSignTool.Location = new Point(490, 60);
+            btnSelectSignTool.Location = new Point(630, 76);
+            btnSelectSignTool.Margin = new Padding(4);
             btnSelectSignTool.Name = "btnSelectSignTool";
-            btnSelectSignTool.Size = new Size(80, 28);
+            btnSelectSignTool.Size = new Size(103, 35);
             btnSelectSignTool.TabIndex = 1;
             btnSelectSignTool.Text = "瀏覽...";
             btnSelectSignTool.UseVisualStyleBackColor = false;
@@ -81,9 +83,10 @@ namespace SignValidateTool
             // 
             txtSignToolPath.BorderStyle = BorderStyle.FixedSingle;
             txtSignToolPath.Font = new Font("Microsoft JhengHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtSignToolPath.Location = new Point(130, 60);
+            txtSignToolPath.Location = new Point(167, 76);
+            txtSignToolPath.Margin = new Padding(4);
             txtSignToolPath.Name = "txtSignToolPath";
-            txtSignToolPath.Size = new Size(350, 23);
+            txtSignToolPath.Size = new Size(449, 27);
             txtSignToolPath.TabIndex = 2;
             // 
             // btnRunPowerShell
@@ -94,9 +97,10 @@ namespace SignValidateTool
             btnRunPowerShell.FlatStyle = FlatStyle.Flat;
             btnRunPowerShell.Font = new Font("Microsoft JhengHei UI", 10F, FontStyle.Bold, GraphicsUnit.Point);
             btnRunPowerShell.ForeColor = Color.White;
-            btnRunPowerShell.Location = new Point(270, 140);
+            btnRunPowerShell.Location = new Point(347, 177);
+            btnRunPowerShell.Margin = new Padding(4);
             btnRunPowerShell.Name = "btnRunPowerShell";
-            btnRunPowerShell.Size = new Size(120, 35);
+            btnRunPowerShell.Size = new Size(154, 44);
             btnRunPowerShell.TabIndex = 3;
             btnRunPowerShell.Text = "執行驗證";
             btnRunPowerShell.UseVisualStyleBackColor = false;
@@ -108,10 +112,11 @@ namespace SignValidateTool
             txtOutput.BackColor = Color.FromArgb(248, 248, 248);
             txtOutput.BorderStyle = BorderStyle.FixedSingle;
             txtOutput.Font = new Font("Consolas", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtOutput.Location = new Point(20, 190);
+            txtOutput.Location = new Point(26, 241);
+            txtOutput.Margin = new Padding(4);
             txtOutput.Name = "txtOutput";
             txtOutput.ReadOnly = true;
-            txtOutput.Size = new Size(610, 230);
+            txtOutput.Size = new Size(783, 290);
             txtOutput.TabIndex = 4;
             txtOutput.Text = "";
             // 
@@ -119,9 +124,10 @@ namespace SignValidateTool
             // 
             txtDllFolder.BorderStyle = BorderStyle.FixedSingle;
             txtDllFolder.Font = new Font("Microsoft JhengHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            txtDllFolder.Location = new Point(130, 100);
+            txtDllFolder.Location = new Point(167, 127);
+            txtDllFolder.Margin = new Padding(4);
             txtDllFolder.Name = "txtDllFolder";
-            txtDllFolder.Size = new Size(350, 23);
+            txtDllFolder.Size = new Size(449, 27);
             txtDllFolder.TabIndex = 5;
             // 
             // panel1
@@ -130,8 +136,9 @@ namespace SignValidateTool
             panel1.Controls.Add(lblTitle);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
+            panel1.Margin = new Padding(4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(650, 40);
+            panel1.Size = new Size(836, 51);
             panel1.TabIndex = 6;
             // 
             // lblTitle
@@ -139,9 +146,10 @@ namespace SignValidateTool
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Microsoft JhengHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(20, 10);
+            lblTitle.Location = new Point(26, 13);
+            lblTitle.Margin = new Padding(4, 0, 4, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(106, 20);
+            lblTitle.Size = new Size(172, 25);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "DLL 簽章驗證工具";
             // 
@@ -149,27 +157,30 @@ namespace SignValidateTool
             // 
             lblSignTool.AutoSize = true;
             lblSignTool.Font = new Font("Microsoft JhengHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblSignTool.Location = new Point(20, 63);
+            lblSignTool.Location = new Point(26, 80);
+            lblSignTool.Margin = new Padding(4, 0, 4, 0);
             lblSignTool.Name = "lblSignTool";
-            lblSignTool.Size = new Size(101, 15);
+            lblSignTool.Size = new Size(99, 19);
             lblSignTool.TabIndex = 7;
-            lblSignTool.Text = "SignTool 路徑:";
+            lblSignTool.Text = "驗證工具路徑";
             // 
             // lblDllFolder
             // 
             lblDllFolder.AutoSize = true;
             lblDllFolder.Font = new Font("Microsoft JhengHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblDllFolder.Location = new Point(20, 103);
+            lblDllFolder.Location = new Point(26, 130);
+            lblDllFolder.Margin = new Padding(4, 0, 4, 0);
             lblDllFolder.Name = "lblDllFolder";
-            lblDllFolder.Size = new Size(104, 15);
+            lblDllFolder.Size = new Size(118, 19);
             lblDllFolder.TabIndex = 8;
             lblDllFolder.Text = "DLL 資料夾路徑:";
             // 
             // progressBar
             // 
-            progressBar.Location = new Point(20, 430);
+            progressBar.Location = new Point(26, 545);
+            progressBar.Margin = new Padding(4);
             progressBar.Name = "progressBar";
-            progressBar.Size = new Size(610, 10);
+            progressBar.Size = new Size(784, 13);
             progressBar.Style = ProgressBarStyle.Marquee;
             progressBar.TabIndex = 9;
             progressBar.Visible = false;
@@ -178,31 +189,34 @@ namespace SignValidateTool
             // 
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Microsoft JhengHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
-            lblStatus.Location = new Point(20, 178);
+            lblStatus.Location = new Point(26, 225);
+            lblStatus.Margin = new Padding(4, 0, 4, 0);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(67, 15);
+            lblStatus.Size = new Size(72, 19);
             lblStatus.TabIndex = 10;
             lblStatus.Text = "執行結果:";
             // 
             // statusStrip
             // 
+            statusStrip.ImageScalingSize = new Size(20, 20);
             statusStrip.Items.AddRange(new ToolStripItem[] { statusLabel });
-            statusStrip.Location = new Point(0, 448);
+            statusStrip.Location = new Point(0, 570);
             statusStrip.Name = "statusStrip";
-            statusStrip.Size = new Size(650, 22);
+            statusStrip.Padding = new Padding(1, 0, 18, 0);
+            statusStrip.Size = new Size(836, 25);
             statusStrip.TabIndex = 11;
             // 
             // statusLabel
             // 
             statusLabel.Name = "statusLabel";
-            statusLabel.Size = new Size(43, 17);
+            statusLabel.Size = new Size(39, 19);
             statusLabel.Text = "就緒";
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(650, 470);
+            ClientSize = new Size(836, 595);
             Controls.Add(statusStrip);
             Controls.Add(lblStatus);
             Controls.Add(progressBar);
@@ -215,6 +229,7 @@ namespace SignValidateTool
             Controls.Add(txtSignToolPath);
             Controls.Add(btnSelectSignTool);
             Controls.Add(btnSelectDllFolder);
+            Margin = new Padding(4);
             Name = "Form1";
             Text = "DLL 簽章驗證工具";
             panel1.ResumeLayout(false);
