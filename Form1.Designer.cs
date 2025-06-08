@@ -43,8 +43,13 @@ namespace SignValidateTool
             lblStatus = new Label();
             statusStrip = new StatusStrip();
             statusLabel = new ToolStripStatusLabel();
+            notifyIcon = new NotifyIcon(components);
+            notifyIconMenu = new ContextMenuStrip(components);
+            menuItemRestore = new ToolStripMenuItem();
+            menuItemExit = new ToolStripMenuItem();
             panel1.SuspendLayout();
             statusStrip.SuspendLayout();
+            notifyIconMenu.SuspendLayout();
             SuspendLayout();
             // 
             // btnSelectDllFolder
@@ -211,9 +216,37 @@ namespace SignValidateTool
             statusLabel.Name = "statusLabel";
             statusLabel.Size = new Size(39, 19);
             statusLabel.Text = "就緒";
-            // 
+            //
+            // notifyIconMenu
+            //
+            notifyIconMenu.Items.AddRange(new ToolStripItem[] { menuItemRestore, menuItemExit });
+            notifyIconMenu.Name = "notifyIconMenu";
+            notifyIconMenu.Size = new Size(151, 48);
+            //
+            // menuItemRestore
+            //
+            menuItemRestore.Name = "menuItemRestore";
+            menuItemRestore.Size = new Size(150, 22);
+            menuItemRestore.Text = "還原";
+            menuItemRestore.Click += menuItemRestore_Click;
+            //
+            // menuItemExit
+            //
+            menuItemExit.Name = "menuItemExit";
+            menuItemExit.Size = new Size(150, 22);
+            menuItemExit.Text = "離開";
+            menuItemExit.Click += menuItemExit_Click;
+            //
+            // notifyIcon
+            //
+            notifyIcon.ContextMenuStrip = notifyIconMenu;
+            notifyIcon.Icon = SystemIcons.Application;
+            notifyIcon.Text = "DLL 簽章驗證工具";
+            notifyIcon.Visible = false;
+            notifyIcon.DoubleClick += notifyIcon_DoubleClick;
+            //
             // Form1
-            // 
+            //
             AutoScaleDimensions = new SizeF(9F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(836, 595);
@@ -232,10 +265,12 @@ namespace SignValidateTool
             Margin = new Padding(4);
             Name = "Form1";
             Text = "DLL 簽章驗證工具";
+            Resize += Form1_Resize;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             statusStrip.ResumeLayout(false);
             statusStrip.PerformLayout();
+            notifyIconMenu.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -256,5 +291,9 @@ namespace SignValidateTool
         private Label lblStatus;
         private StatusStrip statusStrip;
         private ToolStripStatusLabel statusLabel;
+        private NotifyIcon notifyIcon;
+        private ContextMenuStrip notifyIconMenu;
+        private ToolStripMenuItem menuItemRestore;
+        private ToolStripMenuItem menuItemExit;
     }
 }
