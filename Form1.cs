@@ -1,4 +1,5 @@
 using System.Management.Automation;
+using System.Drawing;
 
 namespace SignValidateTool
 {
@@ -7,6 +8,8 @@ namespace SignValidateTool
         public Form1()
         {
             InitializeComponent();
+            notifyIcon.Icon = SystemIcons.Application;
+            notifyIcon.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -122,6 +125,40 @@ namespace SignValidateTool
             {
                 txtOutput.AppendText(text + Environment.NewLine);
             }
+        }
+
+        private void Form1_Resize(object? sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                ShowInTaskbar = false;
+                notifyIcon.Visible = true;
+            }
+        }
+
+        private void notifyIcon_DoubleClick(object? sender, EventArgs e)
+        {
+            RestoreFromTray();
+        }
+
+        private void menuItemRestore_Click(object? sender, EventArgs e)
+        {
+            RestoreFromTray();
+        }
+
+        private void menuItemExit_Click(object? sender, EventArgs e)
+        {
+            notifyIcon.Visible = false;
+            Application.Exit();
+        }
+
+        private void RestoreFromTray()
+        {
+            Show();
+            WindowState = FormWindowState.Normal;
+            ShowInTaskbar = true;
+            notifyIcon.Visible = false;
         }
     }
 }
