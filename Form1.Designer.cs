@@ -91,6 +91,7 @@ namespace SignValidateTool
             txtSignToolPath.Location = new Point(167, 76);
             txtSignToolPath.Margin = new Padding(4);
             txtSignToolPath.Name = "txtSignToolPath";
+            txtSignToolPath.PlaceholderText = "如:D:\\software\\Nx\\NX2007\\NXBIN";
             txtSignToolPath.Size = new Size(449, 27);
             txtSignToolPath.TabIndex = 2;
             // 
