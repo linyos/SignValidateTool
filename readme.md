@@ -1,11 +1,11 @@
 # SignValidateTool
 
 ## 專案簡介
+![介面](./images/181810.png)
 
 SignValidateTool 是一個 Windows Forms 應用程式，用於批次驗證指定資料夾內所有 DLL 檔案的簽章狀態。透過整合 SignDotNet.exe 工具，協助開發者快速檢查 DLL 是否已正確簽章。
 
-## 功能特色
-
+## 功能特色!
 - 選擇 DLL 資料夾與 SignDotNet 工具路徑
 - 一鍵批次驗證所有 DLL 檔案
 - 於介面即時顯示驗證進度與結果
